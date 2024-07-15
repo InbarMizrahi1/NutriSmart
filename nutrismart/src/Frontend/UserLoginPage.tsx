@@ -4,12 +4,15 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "./firebase"; // Assuming you have initialized your Firebase app and exported the 'db' instance
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { checkUserExists } from "../Backend/DatabaseUtils";
+// import { Spinner } from "@material-tailwind/react";
 
 function UserLoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successLoginMessage, setSuccessLoginMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleBackButton = () => {
     navigate("/");
@@ -54,6 +57,10 @@ function UserLoginPage() {
     //   console.error("Error logging in:", error);
     //   setErrorMessage("An error occurred while logging in.");
     // }
+
+    setLoading(true);
+    setErrorMessage("");
+    setSuccessLoginMessage("");
     try {
       // Check if the user exists in the database
       const userExists = await checkUserExists(email);
@@ -61,12 +68,23 @@ function UserLoginPage() {
       if (userExists) {
         // Sign in the user with email and password
         // await signInWithEmailAndPassword(auth, email, password);
+        setTimeout(() => {
+          setLoading(false);
+          setSuccessLoginMessage("Welcome!");
+          setTimeout(() => {
+            navigate("/userPage");
+          }, 1000);
 
+          // Navigate to user page
+          // navigate("/userPage");
+        }, 2000);
         console.log("User Exists!");
+        setSuccessLoginMessage("Welcome!");
 
         // Navigate to user page
         // navigate("/userPage");
       } else {
+        setLoading(false);
         setErrorMessage("Email not found. Please sign up.");
       }
     } catch (error) {
@@ -142,8 +160,28 @@ function UserLoginPage() {
           required
         />
       </div>
+      {/* {successLoginMessage && (
+        <p className="text-green-500 mt-2">{successLoginMessage}</p>
+      )}
+      {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>} */}
 
-      {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+      <div className="mt-6 px-10 justify-center items-center">
+        {successLoginMessage && (
+          <div className="flex items-center space-x-2">
+            <p className="text-green-500">{successLoginMessage}</p>
+            {loading && (
+              <div
+                className="animate-spin inline-block h-6 w-6 border-[3px] border-current border-t-transparent text-gray-800 rounded-full dark:text-green-500"
+                role="status"
+                aria-label="loading"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
+            )}
+          </div>
+        )}
+        {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
+      </div>
 
       <button
         type="button"
