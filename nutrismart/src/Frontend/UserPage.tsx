@@ -1,8 +1,17 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "./UserContext";
 
 function UserPage() {
   const navigate = useNavigate();
+  const { userInfo } = useUserContext();
+
+  useEffect(() => {
+    const userName = userInfo.email.split("@")[0];
+    alert(`Hello ${userName}`);
+  }, [userInfo.email]);
+
   const handleHomeButton = () => {
     navigate("/");
   };
@@ -20,7 +29,7 @@ function UserPage() {
   };
 
   const handleNutritionistChatButton = () => {
-    navigate("/nutritionistChat");
+    navigate("/nutritionistPage");
   };
 
   // State to manage the visibility of the navbar

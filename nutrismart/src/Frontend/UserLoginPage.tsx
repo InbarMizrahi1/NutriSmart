@@ -4,10 +4,12 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "./firebase"; // Assuming you have initialized your Firebase app and exported the 'db' instance
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { checkUserExists } from "../Backend/DatabaseUtils";
+import { useUserContext } from "./UserContext";
 // import { Spinner } from "@material-tailwind/react";
 
 function UserLoginPage() {
   const navigate = useNavigate();
+  const { setUserInfo } = useUserContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -68,6 +70,11 @@ function UserLoginPage() {
       if (userExists) {
         // Sign in the user with email and password
         // await signInWithEmailAndPassword(auth, email, password);
+
+        const userdata = userExists;
+        setUserInfo(userdata);
+        console.log("printing userdata from UserLoginPage.tsx", userdata);
+
         setTimeout(() => {
           setLoading(false);
           setSuccessLoginMessage("Welcome!");
