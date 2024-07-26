@@ -5,12 +5,17 @@ import { useUserContext } from "../Frontend/UserContext";
 import { UpdateUserQuestions } from "../Backend/UpdateUserQuestions";
 
 const NutritionistPage_ClientSide: React.FC = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [containerHeight, setContainerHeight] = useState(0); // Start height
   const { userInfo } = useUserContext();
+
+  const handleBackButton = () => {
+    navigate("/userPage"); // Replace '/userPage' with your desired route
+  };
 
   useEffect(() => {
     if (questions.length === 0) {
@@ -45,6 +50,7 @@ const NutritionistPage_ClientSide: React.FC = () => {
         <button
           type="button"
           className="p-2 bg-gray-800 text-white rounded-full hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          onClick={handleBackButton}
         >
           <svg
             className="h-6 w-6"
