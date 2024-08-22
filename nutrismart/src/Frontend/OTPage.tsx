@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "./UserContext";
-import { db } from "./firebase";
-import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
+// import { db } from "./firebase";
+// import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { saveUserToDatabase } from "../Backend/DatabaseUtils";
 
 const OTPVerification: React.FC = () => {
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const submitRef = useRef<HTMLButtonElement | null>(null);
-  const [serverOtp, setServerOtp] = useState("");
+  const [, setServerOtp] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
-  const handleVerifyButton = () => {
-    navigate("/login");
-  };
+  // const handleVerifyButton = () => {
+  //   navigate("/login");
+  // };
   const { userInfo } = useUserContext();
 
   useEffect(() => {

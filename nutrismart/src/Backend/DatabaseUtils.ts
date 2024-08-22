@@ -1,9 +1,9 @@
 import { db } from "../Frontend/firebase"; // Adjust the import according to your Firebase config file path
-import { getDoc, setDoc, doc, updateDoc, collection } from "firebase/firestore";
+import { getDoc, doc, updateDoc, collection } from "firebase/firestore";
 import { UserInfo } from "../types/UserInfo"; // Ensure the correct path to your UserInfo.ts file
 
 //Function to check if a user already exists in the database
-export const checkUserExists = async (email: string): Promise<boolean> => {
+export const checkUserExists = async (email: string): Promise<any> => {
   try {
     const usersRef = collection(db, "users");
     const usersInfoRef = doc(usersRef, "usersInfo");
@@ -17,13 +17,13 @@ export const checkUserExists = async (email: string): Promise<boolean> => {
         const userInfo = userData[userId];
         if (userInfo.email === email) {
           console.log("User found in the database", userInfo);
-          return true;
+          return userInfo;
         }
       }
       // return userData.hasOwnProperty(email);
     }
     console.log("User is not in database!");
-    return false;
+    return null;
   } catch (error) {
     console.error("Error checking user existance:", error);
     throw error;

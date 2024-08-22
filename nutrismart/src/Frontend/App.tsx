@@ -9,13 +9,15 @@ import InputGoals from "./InputGoals";
 
 import InputMedicalConditions from "./InputMedicalConditions";
 import CustomizeMealPlan from "./CustomizeMealPlan";
-import NutritionistChat from "./NutritionistChat";
+// import NutritionistChat from "./NutritionistChat";
 
 import OTPVerification from "./OTPage";
 
 import NSChatBot from "./NSChatBot";
 
 import GuestPageController from "./GuestPageController";
+
+import NutritionistPage_ClientSide from "./NutritionistPage_ClientSide";
 
 const App: React.FC = () => {
   return (
@@ -33,12 +35,16 @@ const App: React.FC = () => {
           />
 
           <Route path="/customizeMealPlan" element={<CustomizeMealPlan />} />
-          <Route path="/nutritionistChat" element={<NutritionistChat />} />
+          {/* <Route path="/nutritionistChat" element={<NutritionistChat />} /> */}
           <Route path="/otpPage" element={<OTPVerification />} />
           <Route path="/NSChatBot" element={<NSChatBot />} />
           <Route
             path="/guestPageController"
             element={<GuestPageController />}
+          />
+          <Route
+            path="/nutritionistPage"
+            element={<NutritionistPage_ClientSide />}
           />
         </Routes>
       </UserProvider>
