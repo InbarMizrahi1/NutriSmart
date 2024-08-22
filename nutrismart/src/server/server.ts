@@ -7,7 +7,7 @@ import path from "path";
 import cors from "cors"; // Import cors package
 
 const app = express();
-const port = 5173;
+const port = process.env.PORT || 5173;
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all origins (*)
