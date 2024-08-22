@@ -11,8 +11,8 @@ import {
 import { useState } from "react";
 
 // This API_KEY allows us to make calls to OpenAI
-// const API_KEY = "sk-proj-BYq46GftccYyHR4JtIwKT3BlbkFJxscgjLtGYIB4BqdTbx5u";
-const API_KEY = "";
+const API_KEY = "sk-proj-BYq46GftccYyHR4JtIwKT3BlbkFJxscgjLtGYIB4BqdTbx5u";
+
 
 function NSChatBot() {
   const [typing, setTyping] = useState(false);
