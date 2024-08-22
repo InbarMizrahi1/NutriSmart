@@ -9,7 +9,7 @@ import InputGoals from "./InputGoals";
 
 import InputMedicalConditions from "./InputMedicalConditions";
 import CustomizeMealPlan from "./CustomizeMealPlan";
-import NutritionistChat from "./NutritionistChat";
+// import NutritionistChat from "./NutritionistChat";
 
 import OTPVerification from "./OTPage";
 

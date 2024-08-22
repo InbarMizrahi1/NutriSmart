@@ -1,5 +1,5 @@
 import { db } from "../Frontend/firebase"; // Adjust the import according to your Firebase config file path
-import { getDoc, setDoc, doc, updateDoc, collection } from "firebase/firestore";
+import { getDoc, doc, updateDoc, collection } from "firebase/firestore";
 import { UserInfo } from "../types/UserInfo"; // Ensure the correct path to your UserInfo.ts file
 
 //Function to check if a user already exists in the database

@@ -1,6 +1,6 @@
 import { UserInfo } from "../types/UserInfo";
 import { Question } from "../types/Question";
-import { getFirestore, doc, updateDoc, setDoc } from "firebase/firestore"; // Import necessary functions
+import { getFirestore, doc, setDoc } from "firebase/firestore"; // Import necessary functions
 
 const db = getFirestore(); // Get Firestore instance
 

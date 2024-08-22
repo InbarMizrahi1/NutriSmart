@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db, auth } from "./firebase"; // Assuming you have initialized your Firebase app and exported the 'db' instance
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { collection, query, where, getDocs } from "firebase/firestore";
+// import { db, auth } from "./firebase"; // Assuming you have initialized your Firebase app and exported the 'db' instance
+// import { signInWithEmailAndPassword } from "firebase/auth";
 import { checkUserExists } from "../Backend/DatabaseUtils";
 import { useUserContext } from "./UserContext";
 // import { Spinner } from "@material-tailwind/react";

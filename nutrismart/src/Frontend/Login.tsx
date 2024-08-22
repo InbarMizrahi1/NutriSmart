@@ -1,12 +1,12 @@
 // src/Login.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
-import { db, auth } from "./firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { getDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+// import { auth } from "./firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useUserContext } from "./UserContext";
-import { UserInfo } from "../types/UserInfo";
-import { checkUserExists, saveUserToDatabase } from "../Backend/DatabaseUtils";
+// import { UserInfo } from "../types/UserInfo";
+import { checkUserExists } from "../Backend/DatabaseUtils";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -94,11 +94,11 @@ const Login: React.FC = () => {
         return;
       }
 
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
+      // const userCredential = await createUserWithEmailAndPassword(
+      //   auth,
+      //   email,
+      //   password,
+      // );
       const userInfo = { email, password, phoneNumber, id };
 
       setUserInfo(userInfo);

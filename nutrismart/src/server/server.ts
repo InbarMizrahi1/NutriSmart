@@ -7,10 +7,13 @@ import path from "path";
 import cors from "cors"; // Import cors package
 
 const app = express();
-const port = 5173;
+const port = process.env.PORT || 5173;
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all origins (*)
+
+// Serve static files from the React app's dist directory
+app.use(express.static(path.join(__dirname, "../dist")));
 
 // Endpoint to initiate OTP sending
 app.post("/send_otp", async (req: Request, res: Response) => {
@@ -36,6 +39,11 @@ app.post("/send_otp", async (req: Request, res: Response) => {
     console.error("Error sending OTP:", error);
     res.status(500).json({ error: "Failed to send OTP" });
   }
+});
+
+// Serve the React app for any other routes
+app.get("*", (_req: Request, res: Response) => {
+  res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
 });
 
 app.listen(port, () => {
